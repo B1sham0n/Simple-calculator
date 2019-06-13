@@ -11,8 +11,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-//неправильно считает числа
-//нужно переделать приоритет подсчета * и /
+//можно поставить несколько операций подряд - нужно исправить
 
 public class MainActivity extends AppCompatActivity {
 
@@ -57,9 +56,6 @@ public class MainActivity extends AppCompatActivity {
             btn[i].setOnClickListener(btnClick);
         }
 
-        //setOnClick(btn[0],0);
-
-
     }
 
     View.OnClickListener btnClick = new View.OnClickListener() {
@@ -93,9 +89,6 @@ public class MainActivity extends AppCompatActivity {
                 result.append("9");
             }
             if(view == btnPlus) {
-                //var1 = Double.parseDouble(result.getText().toString());
-                //mystr = result.getText().toString();
-                //mystr += "_";
                 operations.add("plus");
                 result.append("+");
             }
@@ -125,10 +118,6 @@ public class MainActivity extends AppCompatActivity {
                 for(int i = 0; i < varsArray.length; i++){
                     vars[i] = Double.parseDouble(varsArray[i]);
                 }
-                //Sort(operations,varsArray);
-                //result.append(Calculation(calcOper,calcArray));
-
-                //result.append(Calculation(operations,varsArray));
                 result.append(calcLogic(operations, vars).toString());
             }
 
@@ -194,15 +183,8 @@ public class MainActivity extends AppCompatActivity {
             return varsArr;
     }
     private ArrayList<String> Shift2(Double[] varsArr, ArrayList<String> operat, int size, int index) {
-        //Double[] newArr = new Double[varsArr.length-1];
             ArrayList<String> oper = new ArrayList<String>();
             if(size != 1) {
-                //for (int i = index; i < size - 1; i++) {
-                //    if(i < oper.size())
-                //        oper.set(i, operat.get(i + 1));
-                //    else
-                //        oper.add(i, operat.get(i + 1));
-                //}
                 for(int i = index; i < operat.size()-1;i++){
                     operat.set(i, operat.get(i+1));
                 }
@@ -216,79 +198,4 @@ public class MainActivity extends AppCompatActivity {
             }
             return oper;
     }
-    private String Calculate(ArrayList<String> operat, String[] varsArr){
-        double result = 0;
-        result = Double.parseDouble(varsArr[0]);
-        for(int i = 0; i < operat.size(); i++) {
-            if (operat.get(i) == "plus")
-                result += Double.parseDouble(varsArr[i+1]);
-            if (operat.get(i) == "minus")
-                result -= Double.parseDouble(varsArr[i+1]);
-            if (operat.get(i) == "multiplication")
-                result *= Double.parseDouble(varsArr[i+1]);
-            if (operat.get(i) == "division")
-                result /= Double.parseDouble(varsArr[i+1]);
-        }
-        return Double.toString(result);
-    }
-    private void Sort(ArrayList<String> operat, String[] varsArr){
-        for(int i = 0; i < operat.size()-1; i++ ){
-            if(operat.get(i).equals("multiplication")){
-                calcArray[i]=Double.toString((Double.parseDouble(varsArr[i])*Double.parseDouble(varsArr[i+1])));
-            }
-            if(operat.get(i).equals("division")){
-                calcArray[i]=Double.toString((Double.parseDouble(varsArr[i])/Double.parseDouble(varsArr[i+1])));
-            }
-            if((operat.get(i).equals("plus") || operat.get(i).equals("minus") )& (!operat.get(i + 1).equals("multiplication") & !operat.get(i + 1).equals("division"))) {
-                calcArray[i]=Double.toString(Double.parseDouble(varsArr[i+1]));
-            }
-        }
-        for(int i = 0; i<operat.size();i++){
-            if(operat.get(i) == "plus" || operat.get(i) == "minus")
-                calcOper.add(operat.get(i));
-        }
-    }
-    private String Calculation(ArrayList<String> operat, String[] varsArr){
-        double result = 0;
-        result = Double.parseDouble(varsArr[0]);
-        for(int i = 0; i < operat.size(); i++) {
-            if(operat.get(i) == "multiplication"){
-                result = Double.parseDouble(varsArr[i]) *  Double.parseDouble(varsArr[i+1]);
-                varsArr[i] = Double.toString(result);
-                varsArr[i+1] = Double.toString(result);
-            }
-            if(operat.get(i) == "division"){
-                result = Double.parseDouble(varsArr[i]) /  Double.parseDouble(varsArr[i+1]);
-                varsArr[i] = Double.toString(result);
-                varsArr[i+1] = Double.toString(result);
-            }
-        }
-        for(int i = 0; i < operat.size(); i++) {
-            if (operat.get(i) == "plus"){
-                result = Double.parseDouble(varsArr[i]) + Double.parseDouble(varsArr[i+1]);
-                varsArr[i] = Double.toString(result);
-                varsArr[i+1] = Double.toString(result);
-                if(operat.size()- i > 1)
-                    varsArr[i+2] = Double.toString(result);
-            }
-            if (operat.get(i) == "minus"){
-                result = Double.parseDouble(varsArr[i]) - Double.parseDouble(varsArr[i+1]);
-                varsArr[i] = Double.toString(result);
-                varsArr[i+1] = Double.toString(result);
-                if(operat.size()- i > 1)
-                    varsArr[i+2] = Double.toString(result);
-            }
-        }
-        System.out.println( "       " + operat.size());
-        return Double.toString(result);
-    }
-    ;
-    /*private void setOnClick(final Button btn, final int number){
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                btn.setText(number);
-            }
-        });
-    }*/
 }
