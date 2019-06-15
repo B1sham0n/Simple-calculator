@@ -4,17 +4,19 @@ import java.util.ArrayList;
 
 public class LogicBackend {
     public static Double calcLogic(ArrayList<String> operat, Double[] varsArr){
-        String[] newArr = new String[varsArr.length-2];//уменьшаем исходный массив на 1, поэтому -2
-        double result = 0;
         while(varsArr.length != 1) {
             for (int i = 0; i < operat.size(); i++) {
+                System.out.println("________iamincycle" + operat.size() + "__" + i);
                 if (operat.get(i) == "multiplication") {
-                    varsArr[i] = varsArr[i] * varsArr[i + 1];
+                    System.out.println("________iamhere");
+                            varsArr[i] = varsArr[i] * varsArr[i + 1];
                     varsArr[i + 1] = 0.0;
                     operat.set(i, "");
                     varsArr = Shift(varsArr, operat, i + 1);
                     operat = Shift2(varsArr, operat, operat.size(), i);
+                    i--;//т.к. мы только что уменьшили operat на 1
                 }
+
             }
             for (int i = 0; i < operat.size(); i++) {
                 if (operat.get(i) == "division") {
@@ -23,6 +25,7 @@ public class LogicBackend {
                     operat.set(i, "");
                     varsArr = Shift(varsArr, operat, i + 1);
                     operat = Shift2(varsArr, operat, operat.size(), i);
+                    i--;//т.к. мы только что уменьшили operat на 1
                 }
             }
             if(operat.get(0) != ""){

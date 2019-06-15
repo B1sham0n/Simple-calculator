@@ -11,14 +11,22 @@ import static android.example.calculator.LogicBackend.calcLogic;
 public class LogicFrontend {
 
     public static Boolean frontendLogic(View view, TextView result, Button[] btn, Button btnPlus, Button btnMinus,
-                                     Button btnDiv, Button btnMult, Button btnDel, Button btnResult, Boolean opetatWasChosed, ArrayList<String> operations, String[] varsArray){
+                                     Button btnDiv, Button btnMult, Button btnDel, Button btnResult, Button btnPoint, Button btnNull, Boolean opetatWasChosed, ArrayList<String> operations, String[] varsArray){
         String mystr;
         //в цикле проверяется нажатие на цифру
+        if(view == btnNull){
+            opetatWasChosed = false;
+            result.append("0");
+        }
         for(int i = 0; i < 9; i++){
             if(view == btn[i]){
                 opetatWasChosed = false;
                 result.append(Integer.toString(i+1));
             }
+        }
+        if(view == btnPoint && !opetatWasChosed){
+            opetatWasChosed = true;
+            result.append(".");
         }
         if(view == btnPlus && !opetatWasChosed) {
             operations.add("plus");
@@ -49,7 +57,7 @@ public class LogicFrontend {
         if(view == btnResult && !opetatWasChosed) {
             opetatWasChosed = true;
             mystr = result.getText().toString();
-            mystr = mystr.replaceAll("[^0-9]", "_");
+            mystr = mystr.replaceAll("[^0-9|\\.]", "_");//оставляем только целые/десятичные числа
             varsArray = mystr.split("_");
             result.setText("");
             if(varsArray.length == 1)

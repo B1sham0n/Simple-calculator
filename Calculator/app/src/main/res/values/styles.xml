@@ -3,9 +3,40 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">#23657E</item>
+        <item name="colorPrimaryDark">#23657E</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+    <style name="mainStyleButtons">
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:layout_width">72dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textSize">30sp</item>
+    </style>
+    <style name="mainStyleButtonsLandscape">
+        <item name="android:layout_marginLeft">3dp</item>
+        <item name="android:layout_marginTop">3dp</item>
+        <item name="android:layout_marginRight">15dp</item>
+        <item name="android:layout_width">60dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <!-- конечные стили с учетом родительских -->
+    <style name="buttonNumber" parent="mainStyleButtons">
+        <item name="android:background">#98D5C0</item>
+    </style>
+    <style name="buttonOperation" parent="mainStyleButtons">
+        <item name="android:background">#CFBDEB</item>
+    </style>
+    <style name="buttonNumberLandscape" parent="mainStyleButtonsLandscape">
+        <item name="android:background">#98D5C0</item>
+    </style>
+    <style name="buttonOperationLandscape" parent="mainStyleButtonsLandscape">
+        <item name="android:background">#CFBDEB</item>
+    </style>
+
 
 </resources>

@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     Button[] btn = new Button[9];
     int [] ID = new int[]{R.id.button0, R.id.button1, R.id.button2, R.id.button3, R.id.button4, R.id.button5, R.id.button6,
             R.id.button7, R.id.button8};
-    Button btnPlus, btnMinus, btnResult, btnDiv, btnMult, btnDel;
+    Button btnPlus, btnMinus, btnResult, btnDiv, btnMult, btnDel, btnPoint, btnNull;
     TextView result;
     String[] varsArray;
     ArrayList<Double> varsList = new ArrayList<Double>();
@@ -51,6 +51,12 @@ public class MainActivity extends AppCompatActivity {
         btnDel = findViewById(R.id.buttonDel);
         btnDel.setOnClickListener(btnClick);
 
+        btnPoint = findViewById(R.id.buttonPoint);
+        btnPoint.setOnClickListener(btnClick);
+
+        btnNull = findViewById(R.id.buttonNull);
+        btnNull.setOnClickListener(btnClick);
+
         for(int i = 0; i < 9; i++) {
             btn[i] = findViewById(ID[i]);
             btn[i].setOnClickListener(btnClick);
@@ -64,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
             //сохраняем результат вызова в булевую переменную для регулирования повторения операций
             //внутри метода frontendLogic происходит обращение к методу logicCalc из LogicBackend.java
             opetatWasChosed = frontendLogic(view, result, btn, btnPlus, btnMinus,
-                    btnDiv, btnMult,  btnDel, btnResult, opetatWasChosed, operations, varsArray);
+                    btnDiv, btnMult,  btnDel, btnResult, btnPoint, btnNull, opetatWasChosed, operations, varsArray);
         }
     };
 
