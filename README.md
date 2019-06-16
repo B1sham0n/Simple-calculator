@@ -1,5 +1,5 @@
 # Simple-calculator
-First program in android java
+First program on android java
 
 Простой калькулятор (только операции +-*:)
 
